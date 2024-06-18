@@ -1,1 +1,4 @@
 *.log
+hi/
+**/.ipynb_checkpoint/
+.ipynb_checkpoints/pandas_checkpoints.ipynb
