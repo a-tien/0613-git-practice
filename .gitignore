@@ -2,3 +2,5 @@
 hi/
 **/.ipynb_checkpoint/
 .ipynb_checkpoints/pandas_checkpoints.ipynb
+venv/*
+!venv/fast_api.py
