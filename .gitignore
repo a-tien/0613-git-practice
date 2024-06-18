@@ -2,3 +2,6 @@
 hi/
 **/.ipynb_checkpoint/
 .ipynb_checkpoints/pandas_checkpoints.ipynb
+venv/*
+!venv/main.py
+!venv/request_test.py
