@@ -41,3 +41,11 @@ print(response.text) # returns the content of the response, in unicode.
 print(response.links) # returns the header links.
 response.close()
 ```
+
+# 240618 FastAPI
+### venv環境建置
+`python -m venv venv`
+`pip install fastapi`
+
+### FastAPI
+``
