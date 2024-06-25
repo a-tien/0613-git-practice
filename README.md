@@ -73,7 +73,7 @@ response.close()
 將其中一個測資拿出來對應，透過test_main.py的`test_read_name()`函式來對main.py的`@app.get("/{name}")`進行測試
 
 **tests/main.py** (原本的FastAPI程式)
-```python=
+```python
 app = FastAPI(title="2024/06/18 FastAPI Practice")
 @app.get("/{name}", description="Hello name")
 async def root(name: str):
@@ -81,7 +81,7 @@ async def root(name: str):
 ```
 
 **tests/test_main.py** (測試FastAPI的程式)
-```python=
+```python
 from fastapi.testclient import TestClient
 from tests.main import app
 
