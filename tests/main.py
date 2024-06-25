@@ -1,8 +1,10 @@
 from fastapi import FastAPI, UploadFile, APIRouter
+from fastapi.testclient import TestClient
 from pydantic import BaseModel
 from datetime import date
 # from .routers import items, users
 
+test = "test"
 app = FastAPI(title="2024/06/18 FastAPI Practice")
 # app.include_router(users.router)
 router = APIRouter()
@@ -34,7 +36,7 @@ class User(BaseModel):
 
 @app.get("/{name}", description="Hello name")
 async def root(name: str):
-    return {f'message": "Hello World {name}'}
+    return {"message": "Hello World {name}"}
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
@@ -46,17 +48,13 @@ async def get_users(user_id: int, qry: str = None):
         return {"error": "User not found"}
     return {"user": fake_db['users'][user_id], "query": qry }
 
-@router.get("/users/test", tags=["users"])
-async def read_users():
-    return [{"username": "Rick"}, {"username": "Morty"}]
-
 @router.delete("/users/{user_id}", tags=["users"])
 async def delete_item(user_id: int):
     fake_db["users"].pop(user_id)
     return fake_db
 
 app.include_router(router)
-
+client = TestClient(app)
 
 if __name__ == "__main__":
     import uvicorn
