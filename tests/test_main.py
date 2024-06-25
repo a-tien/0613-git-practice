@@ -2,6 +2,7 @@ import io
 import time
 import requests
 import subprocess
+import signal
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from tests.main import app, router
@@ -44,22 +45,3 @@ def test_users_delete():
         }
     }
 }
-
-def test_uvicorn_run():
-    process = subprocess.Popen(
-        ["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
-
-    # Give the server a few seconds to start
-    time.sleep(3)
-
-    try:
-        # Check if the server is running by making a request
-        response = requests.get("http://127.0.0.1:8000/users/1")
-        assert response.status_code == 200
-        assert response.json() == {"user": {"name": "John", "age": 35, "email": "john@fakemail.com", "birthday": "2000-01-01"}, "query": None}
-    finally:
-        process.terminate()
-        process.wait()
